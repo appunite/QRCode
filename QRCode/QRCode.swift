@@ -60,7 +60,10 @@ public struct QRCode {
     }
     
     public init?(_ url: NSURL) {
-        if let data = url.absoluteString?.dataUsingEncoding(NSISOLatin1StringEncoding) {
+        guard let path =  url.absoluteString else {
+            return nil
+        }
+        if let data = path.dataUsingEncoding(NSISOLatin1StringEncoding) {
             self.data = data
         } else {
             return nil
